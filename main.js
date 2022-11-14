@@ -42,48 +42,66 @@ button.addEventListener("click", function(e){
         newInputField.value = originalInputField.value;
         newInputField.disabled = true;
         
-        /* Create the change button and add eventListener to it */
+        /* Create the change button */
         var changeButton = document.createElement("button");
         changeButton.innerHTML = "Ändra";
 
-        changeButton.addEventListener("click", function(e) {
-            e.preventDefault();
+        
 
-            var x = e.target;
-            if(x.parentNode.firstChild.disabled == true){
-                x.parentNode.firstChild.disabled = false;
-            } else if(newInputField.value == ""){
-                x.parentNode.appendChild(sideErrorMessage)
-                x.parentNode.firstChild.disabled = false;
-            } else if(newInputField.value != ""){
-                sideErrorMessage.remove();
-                x.parentNode.firstChild.disabled = true;
-            }
-        })
-
-        /* Create done button and add Eventlistener to it */
+        /* Create done button */
         doneButton = document.createElement("button");
         doneButton.innerHTML = "Färdig";
         doneButton.className = "done-button";
 
-        doneButton.addEventListener("click", function(e) {
-            e.preventDefault();
+        
 
-            var x = e.target;
-            ul2.appendChild(x.parentNode);
-            x.parentNode.children[2].remove();
-        })
-
-        /* Create delete button and add eventlistener to it */
+        /* Create delete button */
         var deleteButton =document.createElement("button")
         deleteButton.innerHTML = "Radera";
 
-        deleteButton.addEventListener("click", function(e) {
-            e.preventDefault();
+        /* Object with all the functions of the buttons */
 
-            var x = e.target;
-            x.parentNode.remove();
-        })
+        var buttonFunctions = {
+            changeButtonFunc: function() {
+                changeButton.addEventListener("click", function(e) {
+                    e.preventDefault();
+        
+                    var x = e.target;
+                    if(x.parentNode.firstChild.disabled == true){
+                        x.parentNode.firstChild.disabled = false;
+                    } else if(newInputField.value == ""){
+                        x.parentNode.appendChild(sideErrorMessage)
+                        x.parentNode.firstChild.disabled = false;
+                    } else if(newInputField.value != ""){
+                        sideErrorMessage.remove();
+                        x.parentNode.firstChild.disabled = true;
+                    }
+                })
+            },
+            doneButtonFunc: function() {
+                doneButton.addEventListener("click", function(e) {
+                    e.preventDefault();
+        
+                    var x = e.target;
+                    ul2.appendChild(x.parentNode);
+                    x.parentNode.children[2].remove();
+                })
+            },
+            deleteButtonFunc: function() {
+                deleteButton.addEventListener("click", function(e) {
+                    e.preventDefault();
+        
+                    var x = e.target;
+                    x.parentNode.remove();
+                })
+            }
+        }
+
+        /* Call all those function */
+
+        buttonFunctions.changeButtonFunc();
+        buttonFunctions.doneButtonFunc();
+        buttonFunctions.deleteButtonFunc();
 
         /* append all the new elements to the new list item */
         listItems.appendChild(newInputField);
