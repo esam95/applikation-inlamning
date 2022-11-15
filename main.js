@@ -5,9 +5,6 @@ let removeAllButton = document.getElementById("remove-all");
 let ul1 = document.getElementById("to-do-list");
 let ul2 = document.getElementById("done-list");
 
-var listItems = "";
-var doneButton = "";
-
 let mainErrorMessage = document.createElement("p");
 mainErrorMessage.innerHTML = "Du får inte skapa tomma sysslor";
 mainErrorMessage.style.color = "red";
@@ -20,7 +17,7 @@ removeAllButton.addEventListener("click", function(){
     let i = 0;
     let allListItems = document.getElementsByClassName("list-item");
     while(i < allListItems.length){
-        allListItems[i].remove()
+        allListItems[i].remove();
     }
 })
 
@@ -32,7 +29,7 @@ button.addEventListener("click", function(e){
 
         /* Create and append new list items*/
 
-        listItems = document.createElement("li");
+        var listItems = document.createElement("li");
         listItems.className = "list-item-new";
         ul1.appendChild(listItems);
 
@@ -49,7 +46,7 @@ button.addEventListener("click", function(e){
         
 
         /* Create done button */
-        doneButton = document.createElement("button");
+        var doneButton = document.createElement("button");
         doneButton.innerHTML = "Färdig";
         doneButton.className = "done-button";
 
@@ -59,6 +56,12 @@ button.addEventListener("click", function(e){
         var deleteButton =document.createElement("button")
         deleteButton.innerHTML = "Radera";
 
+        /* append all the new elements to the new list item */
+        listItems.appendChild(newInputField);
+        listItems.appendChild(changeButton);
+        listItems.appendChild(doneButton);
+        listItems.appendChild(deleteButton);
+
         /* Object with all the functions of the buttons */
 
         var buttonFunctions = {
@@ -67,14 +70,14 @@ button.addEventListener("click", function(e){
                     e.preventDefault();
         
                     var x = e.target;
-                    if(x.parentNode.firstChild.disabled == true){
-                        x.parentNode.firstChild.disabled = false;
+                    if(newInputField.disabled == true){
+                        newInputField.disabled = false;
                     } else if(newInputField.value == ""){
                         x.parentNode.appendChild(sideErrorMessage)
-                        x.parentNode.firstChild.disabled = false;
+                        newInputField.disabled = false;
                     } else if(newInputField.value != ""){
                         sideErrorMessage.remove();
-                        x.parentNode.firstChild.disabled = true;
+                        newInputField.disabled = true;
                     }
                 })
             },
@@ -83,8 +86,8 @@ button.addEventListener("click", function(e){
                     e.preventDefault();
         
                     var x = e.target;
-                    ul2.appendChild(x.parentNode);
-                    x.parentNode.children[2].remove();
+                    ul2.appendChild(doneButton.parentNode);
+                    doneButton.remove();
                 })
             },
             deleteButtonFunc: function() {
@@ -92,7 +95,7 @@ button.addEventListener("click", function(e){
                     e.preventDefault();
         
                     var x = e.target;
-                    x.parentNode.remove();
+                    deleteButton.parentNode.remove();
                 })
             }
         }
@@ -102,12 +105,6 @@ button.addEventListener("click", function(e){
         buttonFunctions.changeButtonFunc();
         buttonFunctions.doneButtonFunc();
         buttonFunctions.deleteButtonFunc();
-
-        /* append all the new elements to the new list item */
-        listItems.appendChild(newInputField);
-        listItems.appendChild(changeButton);
-        listItems.appendChild(doneButton);
-        listItems.appendChild(deleteButton);
         } 
         /* in case input is empty */ 
         else {
