@@ -56,6 +56,12 @@ button.addEventListener("click", function(e){
         var deleteButton =document.createElement("button")
         deleteButton.innerHTML = "Radera";
 
+        /* append all the new elements to the new list item */
+        listItems.appendChild(newInputField);
+        listItems.appendChild(changeButton);
+        listItems.appendChild(doneButton);
+        listItems.appendChild(deleteButton);
+
         /* Object with all the functions of the buttons */
 
         var buttonFunctions = {
@@ -99,12 +105,6 @@ button.addEventListener("click", function(e){
         buttonFunctions.changeButtonFunc();
         buttonFunctions.doneButtonFunc();
         buttonFunctions.deleteButtonFunc();
-
-        /* append all the new elements to the new list item */
-        listItems.appendChild(newInputField);
-        listItems.appendChild(changeButton);
-        listItems.appendChild(doneButton);
-        listItems.appendChild(deleteButton);
         } 
         /* in case input is empty */ 
         else {
