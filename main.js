@@ -5,9 +5,6 @@ let removeAllButton = document.getElementById("remove-all");
 let ul1 = document.getElementById("to-do-list");
 let ul2 = document.getElementById("done-list");
 
-var listItems = "";
-var doneButton = "";
-
 let mainErrorMessage = document.createElement("p");
 mainErrorMessage.innerHTML = "Du får inte skapa tomma sysslor";
 mainErrorMessage.style.color = "red";
@@ -32,7 +29,7 @@ button.addEventListener("click", function(e){
 
         /* Create and append new list items*/
 
-        listItems = document.createElement("li");
+        var listItems = document.createElement("li");
         listItems.className = "list-item-new";
         ul1.appendChild(listItems);
 
@@ -49,7 +46,7 @@ button.addEventListener("click", function(e){
         
 
         /* Create done button */
-        doneButton = document.createElement("button");
+        var doneButton = document.createElement("button");
         doneButton.innerHTML = "Färdig";
         doneButton.className = "done-button";
 
