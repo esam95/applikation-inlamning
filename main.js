@@ -11,7 +11,7 @@ mainErrorMessage.style.color = "red";
 
 let sideErrorMessage = document.createElement("p");
 sideErrorMessage.innerHTML = "Kan ej spara tomma sysslor";
-sideErrorMessage.style.color = "red";
+sideErrorMessage.style.color = "blue";
 
 removeAllButton.addEventListener("click", function(){
     let i = 0;
